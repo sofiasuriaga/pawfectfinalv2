@@ -1,0 +1,2 @@
+/Users/khatebautista/Desktop/pawfectcarev3-main/android/app/.cxx/Debug/182s4e5p/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/khatebautista/Desktop/pawfectcarev3-main/android/app/.cxx/Debug/182s4e5p/arm64-v8a/CMakeFiles/rebuild_cache.dir
