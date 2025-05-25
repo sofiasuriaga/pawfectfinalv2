@@ -10,27 +10,26 @@ import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '../../flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import '/flutter_flow/flutter_flow_model.dart';
 import 'dog_profiles_page_widget.dart' show DogProfilesPageWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DogProfilesPageModel extends FlutterFlowModel<DogProfilesPageWidget> {
-  ///  Local state fields for this page.
-
   DogRecipeStruct? dogRecipe;
   void updateDogRecipeStruct(Function(DogRecipeStruct) updateFn) {
     updateFn(dogRecipe ??= DogRecipeStruct());
   }
 
-  ///  State fields for stateful widgets in this page.
-
-  // State field(s) for searchDoggos widget.
   FocusNode? searchDoggosFocusNode;
   TextEditingController? searchDoggosTextController;
   String? Function(BuildContext, String?)? searchDoggosTextControllerValidator;
-  // Model for BottomNavigationBar component.
   late BottomNavigationBarModel bottomNavigationBarModel;
+
+  String searchQuery = '';
+  List<DogsRow> allDoggos = [];
+  List<DogsRow> filteredDoggos = [];
 
   @override
   void initState(BuildContext context) {
@@ -42,7 +41,6 @@ class DogProfilesPageModel extends FlutterFlowModel<DogProfilesPageWidget> {
   void dispose() {
     searchDoggosFocusNode?.dispose();
     searchDoggosTextController?.dispose();
-
     bottomNavigationBarModel.dispose();
   }
 }
