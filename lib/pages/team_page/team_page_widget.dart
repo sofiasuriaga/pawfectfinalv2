@@ -163,7 +163,7 @@ class _TeamPageWidgetState extends State<TeamPageWidget> {
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Container(
                                     width: 355.0,
-                                    height: MediaQuery.sizeOf(context).height * 0.7, // Example: 70% of screen height for the white card
+                                    height: MediaQuery.sizeOf(context).height * 0.7,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
@@ -174,7 +174,7 @@ class _TeamPageWidgetState extends State<TeamPageWidget> {
                                       ),
                                     ),
                                     child: Column(
-                                      mainAxisSize: MainAxisSize.max, // CRUCIAL CHANGE 1
+                                      mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
                                           width: 355.8,
@@ -250,7 +250,7 @@ class _TeamPageWidgetState extends State<TeamPageWidget> {
                                             child: Text('Members',style: FlutterFlowTheme.of(context).bodyMedium.override(fontFamily: GoogleFonts.inter(fontWeight: FontWeight.w600,).fontFamily,letterSpacing: 0.0,),),
                                           ),
                                         ),
-                                        Expanded( // CRUCIAL CHANGE 2
+                                        Expanded(
                                           child: Container(
                                             decoration: BoxDecoration(),
                                             child: StreamBuilder<List<UsersRow>>(
@@ -270,7 +270,7 @@ class _TeamPageWidgetState extends State<TeamPageWidget> {
                                                 if (membersToDisplay.isEmpty && _model.searchQuery.isNotEmpty) {return Padding(padding: const EdgeInsets.symmetric(vertical: 20.0), child: Text('No members found for "${_model.searchQuery}".', style: FlutterFlowTheme.of(context).bodyMedium, textAlign: TextAlign.center));}
                                                 if (membersToDisplay.isEmpty && _model.allMembers.isEmpty) {return Padding(padding: const EdgeInsets.symmetric(vertical: 20.0), child: Text('No members yet.', style: FlutterFlowTheme.of(context).bodyMedium, textAlign: TextAlign.center));}
 
-                                                return ListView.builder( // CRUCIAL CHANGE 3
+                                                return ListView.builder(
                                                   padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
                                                   itemCount: membersToDisplay.length,
                                                   itemBuilder: (context, listViewIndex) {

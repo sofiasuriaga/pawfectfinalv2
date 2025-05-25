@@ -1,7 +1,7 @@
 import '/backend/supabase/supabase.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
-import '../../flutter_flow/flutter_flow_widgets.dart';
+// import '../../flutter_flow/flutter_flow_widgets.dart'; // Not directly used
 import 'dart:ui';
 import '../../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -55,21 +55,26 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              color: Color(0xFF14181B),
+            ),
+            onPressed: () {
+              context.pop();
+            },
+          ),
           title: Text(
             'Notifications',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.outfit(
-                    fontWeight: FontWeight.normal,
-                    fontStyle:
-                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                  ),
-                  color: Color(0xFF14181B),
-                  fontSize: 24.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                  fontStyle:
-                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                ),
+              fontFamily: GoogleFonts.outfit(
+                fontWeight: FontWeight.normal,
+              ).fontFamily,
+              color: Color(0xFF14181B),
+              fontSize: 24.0,
+              letterSpacing: 0.0,
+              fontWeight: FontWeight.normal,
+            ),
           ),
           actions: [],
           centerTitle: false,
@@ -80,13 +85,13 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
               .from("notifications")
               .stream(primaryKey: ['id'])
               .eqOrNull(
-                'notification_user_ids',
-                FFAppState().userid,
-              )
+            'notification_user_ids',
+            FFAppState().userid,
+          )
+              .order('sent_at', ascending: false)
               .map((list) =>
-                  list.map((item) => NotificationsRow(item)).toList()),
+              list.map((item) => NotificationsRow(item)).toList()),
           builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
               return Center(
                 child: SizedBox(
@@ -101,7 +106,16 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
               );
             }
             List<NotificationsRow> listViewNotificationsRowList =
-                snapshot.data!;
+            snapshot.data!;
+
+            if (listViewNotificationsRowList.isEmpty) {
+              return Center(
+                child: Text(
+                  'No notifications yet.',
+                  style: FlutterFlowTheme.of(context).labelLarge,
+                ),
+              );
+            }
 
             return ListView.builder(
               padding: EdgeInsets.zero,
@@ -109,7 +123,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
               itemCount: listViewNotificationsRowList.length,
               itemBuilder: (context, listViewIndex) {
                 final listViewNotificationsRow =
-                    listViewNotificationsRowList[listViewIndex];
+                listViewNotificationsRowList[listViewIndex];
                 return Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                   child: Container(
@@ -120,10 +134,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                         BoxShadow(
                           blurRadius: 0.0,
                           color: Color(0xFFE0E3E7),
-                          offset: Offset(
-                            0.0,
-                            1.0,
-                          ),
+                          offset: Offset(0.0,1.0,),
                         )
                       ],
                       borderRadius: BorderRadius.circular(0.0),
@@ -138,7 +149,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                             width: 4.0,
                             height: 50.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).success,
+                              color: FlutterFlowTheme.of(context).success, // Removed isRead logic
                               borderRadius: BorderRadius.circular(2.0),
                             ),
                           ),
@@ -154,20 +165,14 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .fontStyle,
-                                    ),
+                                  fontFamily: GoogleFonts.plusJakartaSans(
+                                    fontWeight: FontWeight.normal,
+                                  ).fontFamily,
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
                             ),
                           ),
@@ -175,28 +180,24 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              valueOrDefault<String>(
+                              listViewNotificationsRow.sentAt != null
+                                  ? valueOrDefault<String>(
                                 functions.newCustomFunction(
-                                    listViewNotificationsRow.sentAt!),
+                                    listViewNotificationsRow.sentAt!), // Call only if not null
                                 '-',
-                              ),
+                              )
+                                  : '-', // Provide a default if sentAt is null
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                  ),
+                                fontFamily: GoogleFonts.plusJakartaSans(
+                                  fontWeight: FontWeight.w600,
+                                ).fontFamily,
+                                color: Colors.black,
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ],
