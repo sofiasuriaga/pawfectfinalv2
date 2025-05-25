@@ -11,49 +11,43 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/index.dart';
-import 'dashboard_assigned_task_page_widget.dart'
-    show DashboardAssignedTaskPageWidget;
+import '/flutter_flow/flutter_flow_model.dart';
+import 'dashboard_assigned_task_page_widget.dart' show DashboardAssignedTaskPageWidget;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DashboardAssignedTaskPageModel
-    extends FlutterFlowModel<DashboardAssignedTaskPageWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  // Stores action output result for [Backend Call - API (getTasksWithDogs)] action in DashboardAssignedTaskPage widget.
+class DashboardAssignedTaskPageModel extends FlutterFlowModel<DashboardAssignedTaskPageWidget> {
   ApiCallResponse? apiResult464;
-  // Stores action output result for [Backend Call - API (getUsers)] action in DashboardAssignedTaskPage widget.
   ApiCallResponse? getUsersResponse;
-  // Stores action output result for [Backend Call - API (getDogs)] action in DashboardAssignedTaskPage widget.
   ApiCallResponse? getDogsRespons;
-  // Stores action output result for [Backend Call - API (logout)] action in Icon widget.
   ApiCallResponse? apiResulttcc;
-  // Stores action output result for [Backend Call - API (PatchFCMToken)] action in Icon widget.
   ApiCallResponse? apiResultis9;
-  // State field(s) for TabBar widget.
   TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
-
-  // Stores action output result for [Backend Call - API (DeleteTaskByID)] action in Icon widget.
   ApiCallResponse? apiResult62osdasda;
-  // Model for BottomNavigationBar component.
-  late BottomNavigationBarModel bottomNavigationBarModel;
+  BottomNavigationBarModel bottomNavigationBarModel;
+
+  String searchQuery = '';
+  TextEditingController? searchController;
+  List<TasksWithDogStruct> allTasks = [];
+  List<TasksWithDogStruct> filteredActiveTasks = [];
+  List<TasksWithDogStruct> filteredCompletedTasks = [];
+  bool isLoadingTasks = true;
+
+  DashboardAssignedTaskPageModel() : bottomNavigationBarModel = BottomNavigationBarModel();
 
   @override
   void initState(BuildContext context) {
-    bottomNavigationBarModel =
-        createModel(context, () => BottomNavigationBarModel());
+    bottomNavigationBarModel = createModel(context, () => BottomNavigationBarModel());
+    searchController = TextEditingController();
   }
 
   @override
   void dispose() {
     tabBarController?.dispose();
     bottomNavigationBarModel.dispose();
+    searchController?.dispose();
   }
 }
