@@ -8,7 +8,7 @@ import '../../flutter_flow/flutter_flow_util.dart';
 import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_model.dart'; // Ensured FlutterFlowModel import
+import '../../flutter_flow/flutter_flow_model.dart';
 import 'team_page_widget.dart' show TeamPageWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,29 +18,24 @@ class TeamPageModel extends FlutterFlowModel<TeamPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   Stream<List<UsersRow>>? listViewSupabaseStream;
-  // Stores action output result for [Backend Call - API (getConversation)] action in Icon widget.
   ApiCallResponse? apiResult8qn;
-  // Model for BottomNavigationBar component.
   late BottomNavigationBarModel bottomNavigationBarModel;
 
-  // ---Fields for search and filtering functionality---
   TextEditingController? searchController;
   String searchQuery = '';
   List<UsersRow> allMembers = [];
   List<UsersRow> filteredMembers = [];
-  // --- End of fields for search and filtering ---
-
 
   @override
   void initState(BuildContext context) {
     bottomNavigationBarModel =
         createModel(context, () => BottomNavigationBarModel());
-    searchController = TextEditingController(); // Initialize search controller
+    searchController = TextEditingController();
   }
 
   @override
   void dispose() {
     bottomNavigationBarModel.dispose();
-    searchController?.dispose(); // Dispose search controller
+    searchController?.dispose();
   }
 }

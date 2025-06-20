@@ -2,10 +2,10 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/invalid_credentials_component/invalid_credentials_component_widget.dart';
 import '/components/user_is_not_active_component/user_is_not_active_component_widget.dart';
 import '/components/user_not_authenticated_component/user_not_authenticated_component_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../flutter_flow/flutter_flow_animations.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
+import '../../flutter_flow/flutter_flow_util.dart';
+import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'dart:ui';
 import '/index.dart';
@@ -27,13 +27,9 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // Model for InvalidCredentialsComponent component.
   late InvalidCredentialsComponentModel invalidCredentialsComponentModel;
-  // Model for UserNotAuthenticatedComponent component.
   late UserNotAuthenticatedComponentModel userNotAuthenticatedComponentModel;
-  // Model for userIsNotActiveComponent component.
   late UserIsNotActiveComponentModel userIsNotActiveComponentModel;
-  // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
   String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
@@ -46,7 +42,6 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     return null;
   }
 
-  // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
@@ -59,9 +54,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     return null;
   }
 
-  // Stores action output result for [Backend Call - API (Login)] action in Button widget.
   ApiCallResponse? apiResultdgh;
-  // Stores action output result for [Backend Call - API (getUsers)] action in Button widget.
   ApiCallResponse? api;
 
   @override

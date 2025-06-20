@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 class ExpandDogFoodModel extends FlutterFlowModel<ExpandDogFoodWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Model for BottomNavigationBar component.
   late BottomNavigationBarModel bottomNavigationBarModel;
 
   @override

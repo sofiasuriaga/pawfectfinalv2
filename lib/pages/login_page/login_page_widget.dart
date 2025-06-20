@@ -1,20 +1,20 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import '../../forgot_password_page/forgot_password_page_widget.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/invalid_credentials_component/invalid_credentials_component_widget.dart';
 import '/components/user_is_not_active_component/user_is_not_active_component_widget.dart';
 import '/components/user_not_authenticated_component/user_not_authenticated_component_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../flutter_flow/flutter_flow_animations.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
+import '../../flutter_flow/flutter_flow_util.dart';
+import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'dart:ui';
-import '/index.dart'; // This should import DashboardAssignedTaskPageWidget and RegisterPageWidget
-// If FirebaseMessaging is used, ensure it's imported:
-// import 'package:firebase_core/firebase_core.dart'; // For Firebase.apps
+import '/index.dart';
+// import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
-import '/backend/supabase/supabase.dart'; // For SupaFlow.client if used for FCM token saving
+import '/backend/supabase/supabase.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -414,13 +414,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                           if (_shouldSetState) {
                                             setState(() {});
                                           }
-                                        },                                        text: 'Sign In', // Added text
-                                        options: FFButtonOptions( // Added options
+                                        },
+                                        text: 'Sign In',
+                                        options: FFButtonOptions(
                                           width: double.infinity,
                                           height: 44.0,
                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                           iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                          color: Color(0xFFFD8205), // Matches your theme
+                                          color: Color(0xFFFD8205),
                                           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                             fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                                             color: Colors.white,
@@ -432,6 +433,85 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                           elevation: 3.0,
                                           borderSide: BorderSide(color: Colors.transparent, width: 1.0),
                                           borderRadius: BorderRadius.circular(12.0),
+                                        ),
+                                      ),
+                                    ),
+
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 12.0, 0.0, 12.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                              ForgotPasswordPageWidget
+                                                  .routeName);
+                                        },
+                                        child: RichText(
+                                          textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'Forgot Password?',
+                                                style: TextStyle(),
+                                              ),
+                                              TextSpan(
+                                                text: ' Click Here',
+                                                style:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                  font: GoogleFonts
+                                                      .plusJakartaSans(
+                                                    fontWeight:
+                                                    FontWeight.w600,
+                                                    fontStyle:
+                                                    FlutterFlowTheme.of(
+                                                        context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                                  ),
+                                                  color:
+                                                  Color(0xFFFD8205),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                  FontWeight.w600,
+                                                  fontStyle:
+                                                  FlutterFlowTheme.of(
+                                                      context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                                ),
+                                              )
+                                            ],
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                              font: GoogleFonts
+                                                  .plusJakartaSans(
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                FlutterFlowTheme.of(
+                                                    context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                              ),
+                                              color: Color(0xFF101213),
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -451,7 +531,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             children: [
                                               TextSpan(text: 'Don\'t have an account?  ', style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                 fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                color: Color(0xFF101213), // Explicit color for better visibility
+                                                color: Color(0xFF101213),
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                               )),
@@ -467,7 +547,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               )
                                             ],
-                                            // Default style for the RichText if not overridden by TextSpans
                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                               color: Color(0xFF101213),

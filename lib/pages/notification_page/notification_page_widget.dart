@@ -1,7 +1,7 @@
 import '/backend/supabase/supabase.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
-// import '../../flutter_flow/flutter_flow_widgets.dart'; // Not directly used
+// import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '../../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -149,7 +149,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                             width: 4.0,
                             height: 50.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).success, // Removed isRead logic
+                              color: FlutterFlowTheme.of(context).success,
                               borderRadius: BorderRadius.circular(2.0),
                             ),
                           ),
@@ -183,10 +183,10 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                               listViewNotificationsRow.sentAt != null
                                   ? valueOrDefault<String>(
                                 functions.newCustomFunction(
-                                    listViewNotificationsRow.sentAt!), // Call only if not null
+                                    listViewNotificationsRow.sentAt!),
                                 '-',
                               )
-                                  : '-', // Provide a default if sentAt is null
+                                  : '-',
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(

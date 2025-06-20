@@ -161,7 +161,7 @@ class _DogProfilesPageWidgetState extends State<DogProfilesPageWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (FFAppState().usertype == 'Admin')
+                            if (FFAppState().usertype == 'Owner')
                               Align(
                                 alignment: AlignmentDirectional(1.0, -1.0),
                                 child: Builder(
@@ -200,7 +200,7 @@ class _DogProfilesPageWidgetState extends State<DogProfilesPageWidget> {
                                 ),
                               ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(15.0, (FFAppState().usertype == 'Admin' ? 5.0 : 15.0) , 15.0, 10.0),
+                              padding: EdgeInsetsDirectional.fromSTEB(15.0, (FFAppState().usertype == 'Owner' ? 5.0 : 15.0) , 15.0, 10.0),
                               child: Container(
                                 width: double.infinity,
                                 child: TextFormField(
@@ -263,7 +263,7 @@ class _DogProfilesPageWidgetState extends State<DogProfilesPageWidget> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            if (FFAppState().usertype == 'Admin')
+                                            if (FFAppState().usertype == 'Owner')
                                               Align(
                                                 alignment: AlignmentDirectional(1.0, -1.0),
                                                 child: Padding(

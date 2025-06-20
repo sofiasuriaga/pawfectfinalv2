@@ -1,7 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
+import '../../flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -113,20 +113,20 @@ class _MessageComponentWidgetState extends State<MessageComponentWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelLarge
-                                            .fontStyle,
-                                      ),
-                                      color: Color(0xFF57636C),
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontStyle,
-                                    ),
+                                  font: GoogleFonts.plusJakartaSans(
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontStyle,
+                                  ),
+                                  color: Color(0xFF57636C),
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.white,
@@ -161,20 +161,20 @@ class _MessageComponentWidgetState extends State<MessageComponentWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF101213),
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .fontStyle,
-                                  ),
+                                font: GoogleFonts.plusJakartaSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontStyle,
+                                ),
+                                color: Color(0xFF101213),
+                                fontSize: 16.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
+                              ),
                               maxLines: 5,
                               minLines: 3,
                               keyboardType: TextInputType.emailAddress,
@@ -193,7 +193,7 @@ class _MessageComponentWidgetState extends State<MessageComponentWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -216,22 +216,22 @@ class _MessageComponentWidgetState extends State<MessageComponentWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          font: GoogleFonts.plusJakartaSans(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: Color(0xFF39D2C0),
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
+                                      font: GoogleFonts.plusJakartaSans(
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color: Color(0xFF39D2C0),
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                   ),
                                 ),
                                 InkWell(
@@ -245,36 +245,65 @@ class _MessageComponentWidgetState extends State<MessageComponentWidget> {
                                             .validate()) {
                                       return;
                                     }
-                                    await MessagesTable().insert({
-                                      'conversation_id': widget!.conversationId,
-                                      'sender_id': FFAppState().userid,
-                                      'content': _model
-                                          .emailAddressTextController.text,
-                                    });
-                                    _model.getUserssssssResult =
-                                        await GetUsersCall.call(
-                                      id: widget!.receiverId,
-                                      accessToken: FFAppState().accessToken,
-                                    );
+                                    final messageContent = _model.emailAddressTextController.text.trim();
+                                    if (messageContent.isEmpty) {
+                                      return;
+                                    }
+                                    try {
+                                      await MessagesTable().insert({
+                                        'conversation_id': widget.conversationId,
+                                        'sender_id': FFAppState().userid,
+                                        'sender_name': FFAppState().userName,
+                                        'content': messageContent,
+                                      });
+                                      await ConversationsTable().update(
+                                        data: {
+                                          'last_message': messageContent,
+                                          'msgs_sender_full_name': FFAppState().userName,
+                                          'updated_at': DateTime.now().toIso8601String(),
+                                        },
+                                        matchingRows: (rows) => rows.eq('id', widget.conversationId as Object),
+                                      );
 
-                                    FFAppState().userFcmToken =
-                                        GetUsersCall.fcmToken(
-                                      (_model.getUserssssssResult?.jsonBody ??
-                                          ''),
-                                    )!;
-                                    safeSetState(() {});
-                                    safeSetState(() {
-                                      _model.emailAddressTextController
-                                          ?.clear();
-                                    });
-                                    _model.apiResultqo1 =
-                                        await PostPushNotifCall.call(
-                                      token: FFAppState().userFcmToken,
-                                      title: 'User sent you a message',
-                                      body:
-                                          'Please check Pawfect Notifications',
-                                      accessToken: FFAppState().accessToken,
-                                    );
+                                      _model.getUserssssssResult =
+                                      await GetUsersCall.call(
+                                        id: widget.receiverId,
+                                        accessToken: FFAppState().accessToken,
+                                      );
+
+                                      if (_model.getUserssssssResult?.succeeded ?? false) {
+                                        FFAppState().userFcmToken =
+                                            GetUsersCall.fcmToken(
+                                              (_model.getUserssssssResult?.jsonBody ??
+                                                  ''),
+                                            ) ?? '';
+                                        safeSetState(() {});
+                                        safeSetState(() {
+                                          _model.emailAddressTextController?.clear();
+                                        });
+                                        if (FFAppState().userFcmToken.isNotEmpty) {
+                                          _model.apiResultqo1 =
+                                          await PostPushNotifCall.call(
+                                            token: FFAppState().userFcmToken,
+                                            title: '${FFAppState().userName ?? "Someone"} sent you a message',
+                                            body: messageContent.length > 50
+                                                ? '${messageContent.substring(0, 50)}...'
+                                                : messageContent,
+                                            accessToken: FFAppState().accessToken,
+                                          );
+                                        }
+                                      }
+                                    } catch (e) {
+                                      // Handle any errors
+                                      print('Error sending message: $e');
+                                      // You might want to show a snackbar or dialog here
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text('Failed to send message. Please try again.'),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    }
 
                                     safeSetState(() {});
                                   },

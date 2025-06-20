@@ -32,4 +32,7 @@ class MessagesRow extends SupabaseDataRow {
 
   DateTime? get timestamp => getField<DateTime>('timestamp');
   set timestamp(DateTime? value) => setField<DateTime>('timestamp', value);
+
+  String? get senderName => getField<String>('sender_name');
+  set senderName(String? value) => setField<String>('sender_name', value);
 }
