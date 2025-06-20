@@ -51,6 +51,16 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
     super.dispose();
   }
 
+  // String _getSenderDisplayName(String? senderId) {
+  //   if (senderId == null) return 'Unknown';
+  //
+  //   if (senderId == FFAppState().userid) {
+  //     return FFAppState().userName ?? 'You';
+  //   } else {
+  //     return widget.conversationName ?? 'Other User';
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
@@ -100,31 +110,31 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget!.conversationName,
+                            widget.conversationName,
                             '-',
                           ),
                           style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Colors.black,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.inter(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            color: Colors.black,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                         ),
                       ),
                     ],
@@ -138,18 +148,17 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                       child: FutureBuilder<List<MessagesRow>>(
                         future: MessagesTable().queryRows(
                           queryFn: (q) => q
                               .eqOrNull(
-                                'conversation_id',
-                                widget!.conversationId,
-                              )
+                            'conversation_id',
+                            widget.conversationId,
+                          )
                               .order('timestamp', ascending: true),
                         ),
                         builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
                             return Center(
                               child: SizedBox(
@@ -164,7 +173,7 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                             );
                           }
                           List<MessagesRow> listViewMessagesRowList =
-                              snapshot.data!;
+                          snapshot.data!;
 
                           return ListView.builder(
                             padding: EdgeInsets.zero,
@@ -173,7 +182,12 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                             itemCount: listViewMessagesRowList.length,
                             itemBuilder: (context, listViewIndex) {
                               final listViewMessagesRow =
-                                  listViewMessagesRowList[listViewIndex];
+                              listViewMessagesRowList[listViewIndex];
+                              final bool isCurrentUser = listViewMessagesRow.senderId == FFAppState().userid;
+                              final String senderName = listViewMessagesRow.senderId == FFAppState().userid
+                                  ? 'You'
+                                  : listViewMessagesRow.senderName ?? 'Unknown';
+
                               return SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -194,53 +208,42 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
+                                                    0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
-                                                  valueOrDefault<String>(
-                                                    listViewMessagesRow
-                                                                .senderId ==
-                                                            FFAppState().userid
-                                                        ? FFAppState().userName
-                                                        : widget!
-                                                            .conversationName,
-                                                    '-',
-                                                  ),
+                                                  senderName,
                                                   style: FlutterFlowTheme.of(
-                                                          context)
+                                                      context)
                                                       .bodyMedium
                                                       .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color: FFAppState()
-                                                                    .userid ==
-                                                                FFAppState()
-                                                                    .userid
-                                                            ? FlutterFlowTheme
-                                                                    .of(context)
-                                                                .success
-                                                            : Colors.black,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                                    font: GoogleFonts.inter(
+                                                      fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                      fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                    ),
+                                                    color: isCurrentUser
+                                                        ? FlutterFlowTheme
+                                                        .of(context)
+                                                        .success
+                                                        : Colors.black,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                    FlutterFlowTheme.of(
+                                                        context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                    fontStyle:
+                                                    FlutterFlowTheme.of(
+                                                        context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -250,87 +253,75 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        10.0, 10.0, 10.0, 10.0),
+                                                    10.0, 10.0, 10.0, 10.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 36.3,
                                                   decoration: BoxDecoration(
-                                                    color: listViewMessagesRow
-                                                                .senderId ==
-                                                            FFAppState().userid
+                                                    color: isCurrentUser
                                                         ? Colors.white
                                                         : FlutterFlowTheme.of(
-                                                                context)
-                                                            .success,
+                                                        context)
+                                                        .success,
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            16.0),
+                                                    BorderRadius.circular(
+                                                        16.0),
                                                     border: Border.all(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .success,
                                                     ),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                    AlignmentDirectional(
+                                                        -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  12.0,
-                                                                  4.0,
-                                                                  8.0,
-                                                                  4.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          12.0,
+                                                          4.0,
+                                                          8.0,
+                                                          4.0),
                                                       child: Text(
                                                         valueOrDefault<String>(
-                                                          widget!.lastMessage !=
-                                                                      null &&
-                                                                  widget!.lastMessage !=
-                                                                      ''
-                                                              ? widget!
-                                                                  .lastMessage
-                                                              : listViewMessagesRow
-                                                                  .content,
+                                                          listViewMessagesRow.content,
                                                           '-',
                                                         ),
                                                         style: FlutterFlowTheme
-                                                                .of(context)
+                                                            .of(context)
                                                             .bodyMedium
                                                             .override(
-                                                              font: GoogleFonts
-                                                                  .inter(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                              color: listViewMessagesRow
-                                                                          .senderId ==
-                                                                      FFAppState()
-                                                                          .userid
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .success
-                                                                  : Colors
-                                                                      .white,
-                                                              fontSize: 12.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                            ),
+                                                          font: GoogleFonts
+                                                              .inter(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w500,
+                                                            fontStyle: FlutterFlowTheme.of(
+                                                                context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                          ),
+                                                          color: isCurrentUser
+                                                              ? FlutterFlowTheme.of(
+                                                              context)
+                                                              .success
+                                                              : Colors
+                                                              .white,
+                                                          fontSize: 12.0,
+                                                          letterSpacing:
+                                                          0.0,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w500,
+                                                          fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                              context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -360,8 +351,8 @@ class _ConversationPageWidgetState extends State<ConversationPageWidget> {
                         model: _model.messageComponentModel,
                         updateCallback: () => safeSetState(() {}),
                         child: MessageComponentWidget(
-                          conversationId: widget!.conversationId!,
-                          receiverId: widget!.receiverId!,
+                          conversationId: widget.conversationId!,
+                          receiverId: widget.receiverId!,
                         ),
                       ),
                     ),

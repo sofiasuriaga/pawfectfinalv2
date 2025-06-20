@@ -192,7 +192,7 @@ class _ExpandDogFoodWidgetState extends State<ExpandDogFoodWidget> {
                                                         child: Visibility(
                                                           visible: FFAppState()
                                                                   .usertype ==
-                                                              'Admin',
+                                                              'Owner',
                                                           child: Builder(
                                                             builder:
                                                                 (context) =>
@@ -356,7 +356,6 @@ class _ExpandDogFoodWidgetState extends State<ExpandDogFoodWidget> {
                                                             ),
                                                             builder: (context,
                                                                 snapshot) {
-                                                              // Customize what your widget looks like when it's loading.
                                                               if (!snapshot
                                                                   .hasData) {
                                                                 return Center(
@@ -473,7 +472,7 @@ class _ExpandDogFoodWidgetState extends State<ExpandDogFoodWidget> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                      if (FFAppState().usertype == 'Admin')
+                                                                                      if (FFAppState().usertype == 'Owner')
                                                                                         Builder(
                                                                                           builder: (context) => InkWell(
                                                                                             splashColor: Colors.transparent,

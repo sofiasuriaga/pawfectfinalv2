@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
+import '../../forgot_password_page/forgot_password_page_widget.dart';
+import '../../forgot_password_with_fields/forgot_password_with_fields_widget.dart';
 import '/backend/schema/structs/index.dart';
 
 import '/backend/supabase/supabase.dart';
@@ -132,6 +134,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: NotificationPageWidget.routeName,
           path: NotificationPageWidget.routePath,
           builder: (context, params) => NotificationPageWidget(),
+        ),
+        FFRoute(
+          name: ForgotPasswordPageWidget.routeName,
+          path: ForgotPasswordPageWidget.routePath,
+          builder: (context, params) => ForgotPasswordPageWidget(),
+        ),
+        FFRoute(
+          name: ForgotPasswordWithFieldsWidget.routeName,
+          path: ForgotPasswordWithFieldsWidget.routePath,
+          builder: (context, params) => ForgotPasswordWithFieldsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

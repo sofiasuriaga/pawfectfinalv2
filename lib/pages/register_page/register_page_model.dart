@@ -27,7 +27,6 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for fullName widget.
   FocusNode? fullNameFocusNode;
   TextEditingController? fullNameTextController;
   String? Function(BuildContext, String?)? fullNameTextControllerValidator;
@@ -39,7 +38,6 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     return null;
   }
 
-  // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode1;
   TextEditingController? emailAddressTextController1;
   String? Function(BuildContext, String?)? emailAddressTextController1Validator;
@@ -55,7 +53,6 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     return null;
   }
 
-  // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode2;
   TextEditingController? emailAddressTextController2;
   String? Function(BuildContext, String?)? emailAddressTextController2Validator;
@@ -68,7 +65,6 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     return null;
   }
 
-  // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
@@ -81,7 +77,6 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     return null;
   }
 
-  // State field(s) for confirmPassword widget.
   FocusNode? confirmPasswordFocusNode;
   TextEditingController? confirmPasswordTextController;
   late bool confirmPasswordVisibility;
@@ -96,11 +91,8 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     return null;
   }
 
-  // Stores action output result for [Validate Form] action in Button widget.
   bool? formvValidation;
-  // Stores action output result for [Backend Call - API (RegisterUser)] action in Button widget.
   ApiCallResponse? apiResult5xc;
-  // Stores action output result for [Backend Call - API (registerUserPatch)] action in Button widget.
   ApiCallResponse? apiResultpfk;
 
   @override

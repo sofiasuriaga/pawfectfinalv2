@@ -14,7 +14,6 @@ class MessagesPageModel extends FlutterFlowModel<MessagesPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   Stream<List<ConversationsRow>>? listViewSupabaseStream;
-  // Model for BottomNavigationBar component.
   late BottomNavigationBarModel bottomNavigationBarModel;
 
   @override

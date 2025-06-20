@@ -10,7 +10,7 @@ import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '../../flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import '/flutter_flow/flutter_flow_model.dart';
+import '../../flutter_flow/flutter_flow_model.dart';
 import 'dog_profiles_page_widget.dart' show DogProfilesPageWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

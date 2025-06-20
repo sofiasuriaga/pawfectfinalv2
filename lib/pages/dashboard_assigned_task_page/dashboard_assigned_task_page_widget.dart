@@ -8,9 +8,9 @@ import '/components/delete_task_widget.dart';
 import '/components/follow_up_task_component/follow_up_task_component_widget.dart';
 import '/components/pop_up_task_component/pop_up_task_component_widget.dart';
 import '/components/success_component/success_component_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
+import '../../flutter_flow/flutter_flow_util.dart';
+import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/gestures.dart';
@@ -288,7 +288,7 @@ class _DashboardAssignedTaskPageWidgetState
                                       letterSpacing: 0.0,
                                     ),
                                   ),
-                                  if (FFAppState().usertype == 'Admin')
+                                  if (FFAppState().usertype == 'Owner')
                                     Builder(
                                       builder: (context) => Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -572,7 +572,7 @@ class _DashboardAssignedTaskPageWidgetState
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (FFAppState().usertype == 'Admin')
+              if (FFAppState().usertype == 'Owner')
                 Align(
                   alignment: AlignmentDirectional(1.0, 0.0),
                   child: Builder(
@@ -638,7 +638,7 @@ class _DashboardAssignedTaskPageWidgetState
               Builder(
                 builder: (context) => Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(
-                      20.0, (status == 'Active' && FFAppState().usertype == 'Admin' ? 0.0 : 10.0), 20.0, 0.0),
+                      20.0, (status == 'Active' && FFAppState().usertype == 'Owner' ? 0.0 : 10.0), 20.0, 0.0),
                   child: InkWell(
                     onTap: () async {
                       if (FFAppState().usertype == 'Caretaker') {

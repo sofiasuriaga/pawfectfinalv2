@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 class ConversationPageModel extends FlutterFlowModel<ConversationPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Model for messageComponent component.
   late MessageComponentModel messageComponentModel;
 
   @override
