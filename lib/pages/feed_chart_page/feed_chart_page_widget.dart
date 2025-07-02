@@ -93,7 +93,6 @@ class _FeedChartPageWidgetState extends State<FeedChartPageWidget> {
   }
 }
 
-// Extracted background image widget
 class _BackgroundImage extends StatelessWidget {
   const _BackgroundImage();
 
@@ -111,7 +110,6 @@ class _BackgroundImage extends StatelessWidget {
   }
 }
 
-// Extracted header section
 class _HeaderSection extends StatelessWidget {
   const _HeaderSection();
 
@@ -149,7 +147,6 @@ class _HeaderSection extends StatelessWidget {
   }
 }
 
-// Extracted feed chart content
 class _FeedChartContent extends StatelessWidget {
   final FeedChartPageModel model;
   final VoidCallback onPerformFiltering;
@@ -199,7 +196,6 @@ class _FeedChartContent extends StatelessWidget {
   }
 }
 
-// Extracted loading indicator
 class _LoadingIndicator extends StatelessWidget {
   const _LoadingIndicator();
 
@@ -219,7 +215,6 @@ class _LoadingIndicator extends StatelessWidget {
   }
 }
 
-// Extracted feed chart header
 class _FeedChartHeader extends StatelessWidget {
   const _FeedChartHeader();
 
@@ -270,7 +265,6 @@ class _FeedChartHeader extends StatelessWidget {
   }
 }
 
-// Extracted search field
 class _SearchField extends StatelessWidget {
   final TextEditingController? controller;
 
@@ -325,7 +319,6 @@ class _SearchField extends StatelessWidget {
   }
 }
 
-// Extracted dogs list
 class _DogsList extends StatelessWidget {
   final FeedChartPageModel model;
   final VoidCallback onPerformFiltering;
@@ -377,7 +370,6 @@ class _DogsList extends StatelessWidget {
   }
 }
 
-// Extracted dogs list view
 class _DogsListView extends StatelessWidget {
   final List<DogsRow> dogs;
   final String searchQuery;
@@ -424,7 +416,6 @@ class _DogsListView extends StatelessWidget {
   }
 }
 
-// Extracted dog list item
 class _DogListItem extends StatelessWidget {
   final DogsRow dog;
   final List<FeedChartsRow> allFeedCharts;
@@ -484,7 +475,6 @@ class _DogListItem extends StatelessWidget {
   }
 }
 
-// Extracted dog avatar
 class _DogAvatar extends StatelessWidget {
   final DogsRow dog;
 
@@ -509,7 +499,6 @@ class _DogAvatar extends StatelessWidget {
   }
 }
 
-// Extracted dog info
 class _DogInfo extends StatelessWidget {
   final DogsRow dog;
 
@@ -560,7 +549,7 @@ class _DogInfo extends StatelessWidget {
   }
 }
 
-// Extracted bottom navigation
+
 class _BottomNavigation extends StatelessWidget {
   final FeedChartPageModel model;
 
